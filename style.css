@@ -1,8 +1,18 @@
-@import url('https://googleapis.com');
+* {
+    box-sizing: border-box;
+}
 
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  font-size: 16px;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
 h1 {
@@ -94,4 +104,34 @@ a {
 .info-row {
     display: grid;
     grid-template-columns: 30% 70%;
+}
+
+.form-row {
+    display: grid;
+    margin-bottom: 10px;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+}
+
+.form-row label {
+    font-weight: 600;
+    min-width: 100px;
+}
+
+.student-card input,
+.student-card textarea {
+    width: 100%;
+    min-width: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+@media (max-width: 600px) {
+    .form-row,
+    .info-row {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
 }

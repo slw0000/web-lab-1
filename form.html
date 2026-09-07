@@ -8,6 +8,52 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
-    
+    <h1>Форма управления студентами</h1>
+    <form id="student-form" class="student-card">
+        <div class="form-row">
+            <label for="surname">Фамилия</label>
+            <input type="text" id="surname" name="surname" minlength="2" maxlength="50" placeholder="Обязательное поле" required>
+        </div>
+        <div class="form-row">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" minlength="2" maxlength="50" placeholder="Обязательное поле" required>
+        </div>
+        <div class="form-row">
+            <label for="patronymic">Отчество</label>
+            <input type="text" id="patronymic" name="patronymic" minlength="2" maxlength="50" placeholder="Обязательное поле" required>
+        </div>
+        <div class="form-row">
+            <label for="group">Группа</label>
+            <input type="text" id="group" name="group" minlength="2" maxlength="10" placeholder="Обязательное поле" required>
+        </div>
+        <div class="form-row">
+            <label for="isu-id">ИСУ id</label>
+            <input type="text" id="isu-id" name="isu-id" pattern="[0-9]{6}" placeholder="Обязательное поле" required>
+        </div>
+        <div class="form-row">
+            <label for="dormitory-number">Номер общежития</label>
+            <input type="text" id="dormitory-number" name="dormitory-number" maxlength="10">     
+        </div>
+        <div class="form-row">
+            <label for="room">Комната</label>
+            <input type="text" id="room" name="room" maxlength="10">
+        </div>
+        <div class="form-row">
+            <label for="move-in-date">Дата заселения</label>
+            <input type="date" id="move-in-date" name="move-in-date">
+        </div>
+        <div class="form-row">
+            <label for="foreigner">Иностранец</label>
+            <input type="checkbox" id="foreigner" name="foreigner">
+        </div>
+        <div class="form-row">
+            <label for="notes">Заметки</label>
+            <textarea id="notes" name="notes"></textarea>
+        </div>
+        <div class="buttons-container">
+            <button type="submit" class="buttons">Сохранить</button>
+            <a href="index.html" class="buttons">Отмена</a>
+        </div>
+    </form>
 </body>
 </html>
