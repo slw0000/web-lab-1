@@ -5,7 +5,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 button,
@@ -15,9 +15,20 @@ select {
     font: inherit;
 }
 
-h1 {
+h1, 
+h4 {
     text-align: center;
     font-weight: 700;
+}
+
+h4 {
+    width: fit-content;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px 10px;
+    background-color: #7abfff;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 a {
@@ -50,8 +61,7 @@ a {
 }
 
 .selected {
-    background-color: rgb(140, 143, 148);
-    color: white;
+    background-color: #DEE2E6;
 }
 
 .buttons-container {
@@ -71,9 +81,17 @@ a {
     padding: 5px;
 }
 
+#delete-button {
+    background-color: rgb(230, 68, 68);
+}
+
+#accept-button {
+    background-color: rgb(59, 172, 59);
+}
+
 .buttons:disabled {
     color: #777;
-    background-color: #ddd;
+    background-color: #ddd !important;
     cursor: not-allowed;
 }
 
@@ -94,10 +112,15 @@ a {
 #student-full-name {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 0px;
 }
 
 .student-card dt {
     font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.student-card dd {
     margin-bottom: 20px;
 }
 
@@ -108,8 +131,8 @@ a {
 
 .form-row {
     display: grid;
-    margin-bottom: 10px;
-    grid-template-columns: 20% 80%;
+    margin-bottom: 15px;
+    grid-template-columns: 25% 75%;
     align-items: center;
 }
 
@@ -118,10 +141,15 @@ a {
     min-width: 100px;
 }
 
+.required {
+    color: red;
+}
+
 .student-card input,
 .student-card textarea {
     width: 100%;
     min-width: 0;
+    min-height: 30px;
 }
 
 textarea {
@@ -135,3 +163,4 @@ textarea {
         gap: 5px;
     }
 }
+
