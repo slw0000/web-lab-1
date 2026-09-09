@@ -122,3 +122,24 @@ export async function getStudentByIsuId(isuId) {
 
     });
  };
+
+ export async function updateStudent(student, id) {
+    let db = await dbPromise;
+
+    return new Promise((resolve, reject) => {
+        let transaction = db.transaction("students", "readwrite");
+        let store = transaction.objectStore("students");
+
+        student.id = Number(id);
+
+        store.put(student);
+
+        transaction.oncomplete = function() {
+            resolve();
+        };
+
+        transaction.onabort = function() {
+            reject(transaction.error);
+        };
+    });
+ };

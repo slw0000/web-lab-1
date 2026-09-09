@@ -1,7 +1,7 @@
 console.log("form.js loaded");
 
 import { validateStudent } from "./students-service.js";
-import { addStudent, getStudentByDbId, getStudentByIsuId } from "./database.js";
+import { addStudent, getStudentByDbId, updateStudent } from "./database.js";
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
@@ -11,6 +11,10 @@ const id = urlParams.get('id');
 if (id) {
     try {
         let prevStudent = await getStudentByDbId(id);
+
+        if (!prevStudent) {
+            throw new Error("Студента с таким id не существует!")
+        }
 
         document.getElementById('surname').value = prevStudent.surname
         document.getElementById('name').value = prevStudent.name;
@@ -29,11 +33,12 @@ if (id) {
 
         let header = document.querySelector('header');
         let subtitle = document.createElement('h4');
-        subtitle.textContent = `Студент: ${prevStudent.surname} ${prevStudent.name}, ИСУ: ${prevStudent.isuId}`;
+        subtitle.textContent = `Студент: ${prevStudent.surname} ${prevStudent.name} | ИСУ: ${prevStudent.isuId}`;
         header.appendChild(subtitle)
 
     } catch (error) {
         console.log(error.message);
+        alert(error.message);
     };
 }
 
@@ -62,21 +67,18 @@ form.addEventListener('submit', async function(event) {
     console.log('Student:', student)
 
     try {
-        let newIsuStudent = await getStudentByIsuId(student.isuId);
-        if (newIsuStudent && ((id && (newIsuStudent.id !== Number(id))) || (!id))) {
-            throw new Error(`ИСУ ${ student.isuId } уже занят другим студентом!`)
-        }
-
-        validateStudent(student)
+        student = await validateStudent(student, id);
         
         if (id) {
-            //  потом добавить функцию обновления
+            await updateStudent(student, id)
         } else {
             await addStudent(student);
-            window.location.href = 'index.html';
         }
 
+        window.location.href = 'index.html';
+
     } catch (error) {
+        console.log(error.message)
         alert(error.message);
     };
 });
