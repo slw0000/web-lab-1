@@ -8,7 +8,7 @@ import { getAllStudents, deleteStudent } from './database.js';
 const element = document.getElementById('table-body');
 
 element.ondblclick = function(event) {
-    document.location.href = 'form.html?id=' + event.target.parentNode.id;
+    document.location.href = 'student.html?id=' + event.target.parentNode.id;
 };
 
 
@@ -74,7 +74,7 @@ deleteButton.onclick = async function() {
 async function updateTable() {
     try {
         const students = await getAllStudents()
-        
+
         const tableBody = document.getElementById('table-body');
         tableBody.innerHTML = '';
         let id = 0;
