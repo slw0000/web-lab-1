@@ -1,7 +1,7 @@
 console.log('database.js loaded');
 
 
-// Инициализация бд через Promise для асинхронной реализации
+// Инициализация бд через Promise чтобы красиво все обернуть и потом через async/await юзать
 
 const dbPromise = new Promise((resolve, reject) => {
     const openRequest = indexedDB.open('students-db', 1)
@@ -9,8 +9,8 @@ const dbPromise = new Promise((resolve, reject) => {
 
     openRequest.onupgradeneeded = function() {
 
-        let db = openRequest.result;
-        let store = db.createObjectStore('students', {
+        const db = openRequest.result;
+        const store = db.createObjectStore('students', {
             keyPath: 'id',
             autoIncrement: true
         });
@@ -27,14 +27,17 @@ const dbPromise = new Promise((resolve, reject) => {
     }
 });
 
+
+// CRUD
+
 export async function getAllStudents() {
-    let db = await dbPromise;
+    const db = await dbPromise;
 
     return new Promise((resolve, reject) => {
-        let transaction = db.transaction('students', 'readonly');
-        let store = transaction.objectStore('students');
+        const transaction = db.transaction('students', 'readonly');
+        const store = transaction.objectStore('students');
 
-        let getAllRequest = store.getAll();
+        const getAllRequest = store.getAll();
 
         getAllRequest.onsuccess = function() {
             resolve(getAllRequest.result)
@@ -47,13 +50,13 @@ export async function getAllStudents() {
 };
 
 export async function getStudentByDbId(id) {
-    let db = await dbPromise;
+    const db = await dbPromise;
 
     return new Promise((resolve, reject) => {
-        let transaction = db.transaction('students', 'readonly');
-        let store = transaction.objectStore('students');
+        const transaction = db.transaction('students', 'readonly');
+        const store = transaction.objectStore('students');
 
-        let getStudentRequest = store.get(Number(id));
+        const getStudentRequest = store.get(Number(id));
 
         getStudentRequest.onsuccess = function() {
             resolve(getStudentRequest.result)
@@ -66,13 +69,13 @@ export async function getStudentByDbId(id) {
 };
 
 export async function getStudentByIsuId(isuId) {
-    let db = await dbPromise;
+    const db = await dbPromise;
 
     return new Promise((resolve, reject) => {
-        let transaction = db.transaction('students', 'readonly');
-        let store = transaction.objectStore('students');
+        const transaction = db.transaction('students', 'readonly');
+        const store = transaction.objectStore('students');
 
-        let getStudentRequest = store.index("isuId").get(isuId);
+        const getStudentRequest = store.index("isuId").get(isuId);
 
         getStudentRequest.onsuccess = function() {
             resolve(getStudentRequest.result)
@@ -85,11 +88,11 @@ export async function getStudentByIsuId(isuId) {
 };
 
  export async function deleteStudent(id) {
-    let db = await dbPromise;
+    const db = await dbPromise;
 
     return new Promise((resolve, reject) => {
-        let transaction = db.transaction('students', 'readwrite');
-        let store = transaction.objectStore('students');
+        const transaction = db.transaction('students', 'readwrite');
+        const store = transaction.objectStore('students');
 
         store.delete(Number(id))
 
@@ -104,11 +107,11 @@ export async function getStudentByIsuId(isuId) {
  };
 
  export async function addStudent(student) {
-    let db = await dbPromise;
+    const db = await dbPromise;
 
     return new Promise((resolve, reject) => {
-        let transaction = db.transaction('students', 'readwrite');
-        let store = transaction.objectStore('students');
+        const transaction = db.transaction('students', 'readwrite');
+        const store = transaction.objectStore('students');
 
         store.add(student);
 
@@ -124,11 +127,11 @@ export async function getStudentByIsuId(isuId) {
  };
 
  export async function updateStudent(student, id) {
-    let db = await dbPromise;
+    const db = await dbPromise;
 
     return new Promise((resolve, reject) => {
-        let transaction = db.transaction("students", "readwrite");
-        let store = transaction.objectStore("students");
+        const transaction = db.transaction("students", "readwrite");
+        const store = transaction.objectStore("students");
 
         student.id = Number(id);
 

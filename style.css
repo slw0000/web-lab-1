@@ -1,3 +1,22 @@
+:root {
+    --color-current-student-box: #7abfff;
+
+    --color-table-background: #efefef;
+    --color-table-selected-row: #DEE2E6;
+
+    --color-button-accept: rgb(59, 172, 59);
+    --color-button-delete: rgb(230, 68, 68);
+    --color-button-default: rgb(68, 82, 230);
+    --color-button-disable: #ddd;
+
+    --color-button-font-default: white;
+    --color-button-font-disable: #777;
+
+    --color-student-info-back: #efefef;
+    --color-student-info-border: rgb(151, 151, 151);
+}
+
+
 * {
     box-sizing: border-box;
 }
@@ -5,7 +24,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 button,
@@ -24,23 +43,27 @@ h4 {
 h4 {
     width: fit-content;
     text-align: center;
-    margin: 20px auto;
-    padding: 10px 10px;
-    background-color: #7abfff;
+    margin: 1.25rem auto;
+    padding: 0.625rem 0.625rem;
+    background-color: var(--color-current-student-box);
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 0.625rem;
 }
 
 a {
   text-decoration: none;
 }
 
+
+/* таблица на главной странице */
+
+
 .table-container {
-    width: calc(100% - 32px);
-    max-width: 1000px;
+    width: calc(100% - 2rem);
+    max-width: 60rem;
     overflow-x: auto;
     margin: 0 auto;
-	margin-bottom: 20px;
+	margin-bottom: 1.25rem;
 }
 
 .table {
@@ -50,19 +73,25 @@ a {
 
 .table th {
 	font-weight: bold;
-	background: #efefef;
+	background: var(--color-table-background);
 	border: 1px solid black;
-    padding: 5px;
+    padding: 0.3125rem;
 }
 
 .table td {
 	border: 1px solid black;
-	padding: 5px;
+	padding: 0.3125rem;
 }
 
 .selected {
-    background-color: #DEE2E6;
+    background-color: var(--color-table-selected-row);
 }
+
+#title-for-blind {
+    visibility: hidden;
+}
+
+/* Общее оформление кнопок для всех страниц */
 
 .buttons-container {
     display: flex;
@@ -73,25 +102,25 @@ a {
 .buttons {
     display: flex;
     justify-content: center;
-    color: white;
-    background-color: rgb(68, 82, 230);
+    color: var(--color-button-font-default);
+    background-color: var(--color-button-default);
     border: 1px solid black;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
+    border-radius: 0.3125rem;
+    margin: 0.3125rem;
+    padding: 0.3125rem;
 }
 
 #delete-button {
-    background-color: rgb(230, 68, 68);
+    background-color: var(--color-button-delete);
 }
 
 #accept-button {
-    background-color: rgb(59, 172, 59);
+    background-color: var(--color-button-accept);
 }
 
 .buttons:disabled {
-    color: #777;
-    background-color: #ddd !important;
+    color: var(--color-button-font-disable);
+    background-color: var(--color-button-disable) !important;
     cursor: not-allowed;
 }
 
@@ -99,46 +128,50 @@ a {
     cursor: pointer;
 }
 
+/* Карточка студента в досье */
+
 .student-card {
-    background-color: #efefef;
+    background-color: var(--color-student-info-back);
     width: calc(100% - 32px);
-    max-width: 800px;
-    margin: 20px auto;
-    border: 1px solid rgb(151, 151, 151);
-    border-radius: 10px;
-    padding: 20px;
+    max-width: 60rem;
+    margin: 1.25rem auto;
+    border: 1px solid var(--color-student-info-border);
+    border-radius: 0.625rem;
+    padding: 1.25rem;
 }
 
 #student-full-name {
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 0px;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
 }
 
 .student-card dt {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
 }
 
 .student-card dd {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
+
 
 .info-row {
     display: grid;
     grid-template-columns: 30% 70%;
 }
 
+/* Оформление формы добавления студента */
 .form-row {
     display: grid;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     grid-template-columns: 25% 75%;
     align-items: center;
 }
 
 .form-row label {
     font-weight: 600;
-    min-width: 100px;
+    min-width: 6.25rem;
 }
 
 .required {
@@ -149,18 +182,35 @@ a {
 .student-card textarea {
     width: 100%;
     min-width: 0;
-    min-height: 30px;
+    min-height: 1.875rem;
+}
+
+.student-info #notes {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 textarea {
     resize: vertical;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
+
+
+/* медиа запрос для адаптивности */
 
 @media (max-width: 600px) {
     .form-row,
     .info-row {
         grid-template-columns: 1fr;
-        gap: 5px;
+        gap: 0.3125rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .student-card,
+    .table-container {
+        max-width: 90rem;
     }
 }
 

@@ -2,6 +2,7 @@ console.log('index.js loaded');
 
 import { getAllStudents, deleteStudent } from './database.js';
 
+updateTable();
 
 // Добавление логики клика по строке таблицы 
 
@@ -110,31 +111,4 @@ async function updateTable() {
     }
 };
 
-updateTable();
 
-/* const students = [
-    {
-        id: 1,
-        surname: 'Иванов',
-        name: 'Иван',
-        patronymic: 'Иванович',
-        group: 'P3210',
-        isuId: '123456'
-    },
-    {
-        id: 4,
-        surname: 'Петрова',
-        name: 'Анна',
-        patronymic: 'Сергеевна',
-        group: 'P3211',
-        isuId: '234567'
-    },
-    {
-        id: 7,
-        surname: 'Ким',
-        name: 'Алексей',
-        patronymic: null,
-        group: 'P3210',
-        isuId: '345678'
-    }
-]; */
